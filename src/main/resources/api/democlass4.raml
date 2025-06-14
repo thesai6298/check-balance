@@ -1,0 +1,57 @@
+#%RAML 1.0
+title: democlass4
+version: v1
+protocols:
+  - HTTPS
+  - HTTP
+description: "create restAPI for check balace"
+securitySchemes:
+ secure: !include /security/securityScheme.raml
+securedBy:
+  - secure 
+
+
+/check balance:
+  get:
+    queryParameters:
+      bank:
+        required: true
+        enum: 
+          - icici
+          - axis
+          - hdfc
+          - sbi
+      account type:
+        required: true
+        enum:
+              - savings
+              - current
+      account number:
+        required: true
+
+        type: string 
+        minLength: 10
+        maxLength: 10
+      atm pin:
+        required: true
+        type: string
+        minLength: 4
+        maxLength: 4                
+         
+    responses:
+      200:
+        body:
+          application/json:
+            example: {
+              "status": "your total bank balance is 5000.00 0n 13-06-2025"
+            }
+              
+                  
+              
+
+              
+                    
+                  
+      
+
+  
